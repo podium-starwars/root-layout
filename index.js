@@ -3,6 +3,7 @@ const Layout = require('@podium/layout');
 const utils = require('@podium/utils');
 
 const PORT = process.env.PORT || 3000;
+const NAVBAR_PODLET = process.env.NAVBAR_PODLET || 'http://localhost:3001';
 
 const app = express();
 
@@ -32,7 +33,7 @@ layout.view(
 
 const navpod = layout.client.register({
   name: 'navPod',
-  uri: 'http://localhost:3001/manifest.json',
+  uri: process.env.NAVBAR_PODLET + '/manifest.json',
 });
 
 const peoplePod = layout.client.register({
