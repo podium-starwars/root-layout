@@ -5,11 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:root": "node index.js",
-    "start:navbar": "node navbar/index.js",
-    "start:people": "node people/index.js",
-    "start:planets": "node planets/index.js",
-    "start": "run-p start:*"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
