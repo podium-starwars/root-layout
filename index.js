@@ -2,6 +2,8 @@ const express = require('express');
 const Layout = require('@podium/layout');
 const utils = require('@podium/utils');
 
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 
 const layout = new Layout({
@@ -95,5 +97,5 @@ app.get('/planets', async (req, res) => {
 
 app.use(express.static(__dirname + '/assets'));
 
-app.listen(3000);
+app.listen(PORT);
 console.log('root app listening on port: 3000');
