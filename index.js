@@ -4,6 +4,8 @@ const utils = require('@podium/utils');
 
 const PORT = process.env.PORT || 3000;
 const NAVBAR_PODLET = process.env.NAVBAR_PODLET || 'http://localhost:3001';
+const PEOPLE_PODLET = process.env.PEOPLE_PODLET || 'http://localhost:3002';
+const PLANETS_PODLET = process.env.PLANETS_PODLET || 'http://localhost:3003';
 
 const app = express();
 
@@ -38,11 +40,11 @@ const navpod = layout.client.register({
 
 const peoplePod = layout.client.register({
   name: 'peoplePod',
-  uri: 'http://localhost:3002/manifest.json',
+  uri: process.env.PEOPLE_PODLET + '/manifest.json',
 });
 const planetsPod = layout.client.register({
   name: 'planetsPod',
-  uri: 'http://localhost:3003/manifest.json',
+  uri: process.env.PLANETS_PODLET + '/manifest.json',
 });
 
 app.use(layout.middleware());
