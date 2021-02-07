@@ -1,6 +1,9 @@
 const express = require('express');
 const Layout = require('@podium/layout');
 const utils = require('@podium/utils');
+const fetch = require('node-fetch');
+
+require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
 const NAVBAR_PODLET = process.env.NAVBAR_PODLET || 'http://localhost:3001';
@@ -35,16 +38,16 @@ layout.view(
 
 const navpod = layout.client.register({
   name: 'navPod',
-  uri: process.env.NAVBAR_PODLET + '/manifest.json',
+  uri: NAVBAR_PODLET + '/manifest.json',
 });
 
 const peoplePod = layout.client.register({
   name: 'peoplePod',
-  uri: process.env.PEOPLE_PODLET + '/manifest.json',
+  uri: PEOPLE_PODLET + '/manifest.json',
 });
 const planetsPod = layout.client.register({
   name: 'planetsPod',
-  uri: process.env.PLANETS_PODLET + '/manifest.json',
+  uri: PLANETS_PODLET + '/manifest.json',
 });
 
 app.use(layout.middleware());
@@ -95,6 +98,13 @@ app.get('/planets', async (req, res) => {
     ${navbar}
     ${planets}
     </div>`);
+});
+
+app.get('/api/people', async (req,res) => {
+  const response = await fetch('https://swapi.dev/api/people');
+  const data = await response.json();
+  res.json(data);
+
 });
 
 
